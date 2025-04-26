@@ -13,10 +13,10 @@ const swaggerDefinition = {
       url: 'http://localhost:8000',
       description: 'Development server',
     },
-    // {
-    //   url: 'https://chat-app-server-sut5.onrender.com',
-    //   description: 'Production server',
-    // },
+    {
+      url: 'https://bookstore-ktp-server.onrender.com',
+      description: 'Production server',
+    },
   ],
   components: {
     securitySchemes: {
