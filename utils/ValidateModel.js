@@ -34,10 +34,19 @@ const validatePagination = (req, res, next) => {
   next();
 };
 
+const validateIdInPath = (req, res, next) => {
+  const { id } = req.params;
+  if (!id) {
+    return next({ status: 400, message: "Id is required" });
+  }
+  next();
+}
+
 module.exports = {
   validateEmail,
   validateLength,
   validateMinLength,
   validateMaxLength,
-  validatePagination
+  validatePagination,
+  validateIdInPath
 }
