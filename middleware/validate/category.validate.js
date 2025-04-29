@@ -20,7 +20,7 @@ class CategoryValidate {
       return next({ status: 400, message: "Status is required" });
     }
 
-    if (!["true", "false"].includes(status)) {
+    if (![true, false].includes(status)) {
       return next({ status: 400, message: "Status must be true or false" });
     }
 
