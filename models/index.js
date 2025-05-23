@@ -1,23 +1,22 @@
 const fs = require('fs');
 const path = require('path');
+const sequelize = require('../db/postgres'); // Đảm bảo đúng đường dẫn
 const models = {};
 
-// Đường dẫn thư mục models
-const modelsDir = __dirname;
-
-// Đọc tất cả file trong thư mục models
-fs.readdirSync(modelsDir)
+// Tự động import tất cả các model
+fs.readdirSync(__dirname)
   .filter(file => file.endsWith('.model.js'))
   .forEach(file => {
-    const model = require(path.join(modelsDir, file));
-
-    // Lấy tên file (ví dụ user.model.js -> User)
-    const modelName = path.basename(file, '.model.js')
-      .replace(/\.?([a-z])([A-Z])/g, (_, a, b) => a + '_' + b)
-      .replace(/(^|\_)(\w)/g, (_, __, c) => c.toUpperCase())
-      .replace('Model', ''); 
-
-    models[modelName] = model;
+    const model = require(path.join(__dirname, file));
+    models[model.name] = model; // Sequelize model có .name
   });
+
+// Gắn sequelize và Sequelize vào models nếu cần
+models.sequelize = sequelize;
+models.Sequelize = require('sequelize');
+
+// Thiết lập associations
+const initAssociations = require('./associations');
+initAssociations(models); // Truyền models vào associations.js
 
 module.exports = models;
