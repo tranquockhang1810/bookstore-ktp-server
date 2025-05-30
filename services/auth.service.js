@@ -44,6 +44,12 @@ class AuthService {
       throw error;
     }
 
+    if (user.status === 'inactive') {
+      const error = new Error('User is inactive');
+      error.status = 400;
+      throw error;
+    }
+
     const isMatch = await TokenService.comparePassword(password, user.password);
     if (!isMatch) {
       const error = new Error('Invalid email or password');

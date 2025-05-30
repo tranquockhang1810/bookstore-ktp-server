@@ -13,6 +13,7 @@ const User = sequelize.define('User', {
   role: { type: DataTypes.ENUM('admin', 'user') },
   phone: { type: DataTypes.STRING },
   address: { type: DataTypes.STRING },
+  status: { type: DataTypes.ENUM('active', 'inactive'), defaultValue: 'active' },
 }, {
   tableName: 'users',
   timestamps: true, 

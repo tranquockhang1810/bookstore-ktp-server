@@ -6,5 +6,6 @@ router.use("/api/category", require("./category.route"));
 router.use("/api/book", require("./book.route"));
 router.use("/api/cart", require("./cart.route"));
 router.use("/api/bills", require("./bill.route"));
+router.use("/api/user", require("./user.route"));
 
 module.exports = router;
