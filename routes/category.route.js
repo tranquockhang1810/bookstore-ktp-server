@@ -175,7 +175,7 @@ router.get('/detail/:id', auth(["admin"]), validateIdInPath, CategoryController.
  *       500:
  *         description: Server error
  */
-router.get('/list', auth(["admin"]), validatePagination, CategoryValidate.getListCategory, CategoryController.getListCategories);
+router.get('/list', auth(), validatePagination, CategoryValidate.getListCategory, CategoryController.getListCategories);
 
 
 module.exports = router
