@@ -11,6 +11,7 @@ class CartRepository {
         as: 'book',
         attributes: ['id', 'name', 'price', 'images', 'author'],
       }],
+      order: [['createdAt', 'DESC']],
     });
   }
 
