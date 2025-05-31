@@ -28,7 +28,7 @@ class BookController {
       const { files, body, params } = req;
       const bookId = params.id;
 
-      let imagesToKeep = body.images && body.images.split(',');
+      let imagesToKeep = typeof body.images === 'string' && body.images ? body.images.split(',') : body.images;
 
       // upload các hình mới nếu có
       let uploadedUrls = [];
