@@ -10,12 +10,10 @@ class AuthService {
       throw error;
     }
 
-    const hashedPassword = await TokenService.hashPassword(password);
-
     const newUser = await UserRepository.createUser({
       name,
       email,
-      password: hashedPassword,
+      password,
       phone,
       address,
       role
